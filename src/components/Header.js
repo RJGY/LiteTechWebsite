@@ -8,36 +8,14 @@ const Header = props => (
     </div>
     <div className="content">
       <div className="inner">
-        <h1>Dimension</h1>
+        <h1>LiteTech</h1>
         <p>
-          A fully responsive site template designed by{' '}
-          <a href="https://html5up.net">HTML5 UP</a> and released
-          <br />
-          for free under the{' '}
-          <a href="https://html5up.net/license">Creative Commons</a> license.
+          Welcome to LiteTech
         </p>
       </div>
     </div>
     <nav>
       <ul>
-        <li>
-          <button
-            onClick={() => {
-              props.onOpenArticle('intro')
-            }}
-          >
-            Intro
-          </button>
-        </li>
-        <li>
-          <button
-            onClick={() => {
-              props.onOpenArticle('work')
-            }}
-          >
-            Work
-          </button>
-        </li>
         <li>
           <button
             onClick={() => {
@@ -50,10 +28,37 @@ const Header = props => (
         <li>
           <button
             onClick={() => {
-              props.onOpenArticle('contact')
+              props.onOpenArticle('members')
             }}
           >
-            Contact
+            Members
+          </button>
+        </li>
+        <li>
+          <button
+            onClick={() => {
+              props.onOpenArticle('youtube')
+            }}
+          >
+            Youtube
+          </button>
+        </li>
+        <li>
+          <button
+            onClick={() => {
+              props.onOpenArticle('discord')
+            }}
+          >
+            Discord
+          </button>
+        </li>
+        <li>
+          <button
+            onClick={() => {
+              props.onOpenArticle('login')
+            }}
+          >
+            Login
           </button>
         </li>
       </ul>
