@@ -126,9 +126,13 @@ class Main extends React.Component {
                 >
                     <h2 className="major">Login</h2>
                     <div>
-                        <p>
-                            Something goes here.
-                        </p>
+                        <ul className="actions">
+                            <li>
+                                <a href="https://discord.com/api/oauth2/authorize?client_id=778425413654544385&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Fcallback&response_type=code&scope=identify">
+                                    <input type="button" value="Login via Discord" className="special" />
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                     {close}
                 </article>
