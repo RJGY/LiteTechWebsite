@@ -12,19 +12,19 @@ const SecondPage = () => (
   </Layout>
 )
 
-const oauth = new DiscordOauth2({
-	clientId: "778425413654544385",
-	clientSecret: "KUk30ciP8tPHovM4OoGn70HeSr2m6epC",
-	redirectUri: "http://localhost:8000/callback",
-});
-
-console.log("Code: " + window.location.href.split('=', 2)[1]);
-
-
-
 async function getUser() {
 
-  	const request = oauth.tokenRequest({
+	const oauth = new DiscordOauth2({
+		clientId: "778425413654544385",
+		clientSecret: "KUk30ciP8tPHovM4OoGn70HeSr2m6epC",
+		redirectUri: "http://localhost:8000/callback",
+	});
+
+	console.log("Code: " + window.location.href.split('=', 2)[1]);
+
+	let oauth2 = await oauth;
+
+  	const request = oauth2.tokenRequest({
 		code: window.location.href.split('=', 2)[1], 
 		scope: "identify",
 		grantType: "authorization_code",
@@ -34,11 +34,15 @@ async function getUser() {
 
   	console.log("access_token: " + result.access_token)
 
-	user = await oauth.getUser(result.access_token).then(console.log);
+	let user = await oauth.getUser(result.access_token).then(console.log);
 
-	username = await user.id;
+	
 }
 
-getUser();
+if (window.location.href.split('=', 2)[1] != null)
+{
+	getUser();
+}
+
 
 export default SecondPage
