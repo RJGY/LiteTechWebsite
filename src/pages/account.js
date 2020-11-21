@@ -3,8 +3,8 @@ import { Link } from 'gatsby'
 
 import Layout from '../components/layout'
 import DiscordOauth2 from 'discord-oauth2'
-
-const SecondPage = () => (
+import data from '../../js discord bot/members.json'
+const Account = () => (
   <Layout>
     <h1>Hi from the account page.</h1>
     <p>Account</p>
@@ -12,7 +12,7 @@ const SecondPage = () => (
   </Layout>
 )
 
-async function getUser() {
+async function checkValidUser() {
 
 	const oauth = new DiscordOauth2({
 		clientId: "778425413654544385",
@@ -24,25 +24,51 @@ async function getUser() {
 
 	let oauth2 = await oauth;
 
-  	const request = oauth2.tokenRequest({
-		code: window.location.href.split('=', 2)[1], 
-		scope: "identify",
-		grantType: "authorization_code",
-	})
+ 	let result = getCookie("access_token");
 
- 	let result = await request; // wait until the promise resolves (*)
+  	console.log("access_token: " + result);
 
-  	console.log("access_token: " + result.access_token)
+	const user = oauth2.getUser(result);
 
-	let user = await oauth.getUser(result.access_token).then(console.log);
+	let userData = await user; // wait until the promise resolves (*)
 
-	
+	console.log("user data: " + userData.username + "#" + userData.discriminator);
+
+	let count = 0;
+	data.forEach(user => {
+    	if (user.id == userData.id)
+    	{
+    		count = 1;
+    	}
+    });
+
+	if (count == 1)
+	{
+		alert("Yea it works");
+	}
+	else
+	{
+		window.location.href = "http://localhost:8000/";
+		alert("Sorry, your account is not a member of LiteTech");
+	}
 }
 
-if (window.location.href.split('=', 2)[1] != null)
-{
-	//getUser();
+function getCookie(cname) {
+  var name = cname + "=";
+  var ca = document.cookie.split(';');
+  for(var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
 }
 
+checkValidUser();
 
-export default SecondPage
+
+export default Account

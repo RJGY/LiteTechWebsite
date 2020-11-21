@@ -51,14 +51,22 @@ async function getUser() {
 
 	if (count == 1)
 	{
+		setCookie("access_token", result.access_token, 1)
 		window.location.href = "http://localhost:8000/account";
 	}
 	else
 	{
 		window.location.href = "http://localhost:8000/";
-		alert("Sorry, your account is not part of LiteTech");
+		alert("Sorry, your account is not a member of LiteTech");
 	}
 
+}
+
+function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  var expires = "expires="+d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
 if (window.location.href.split('=', 2)[1] != null)
