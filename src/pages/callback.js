@@ -34,7 +34,7 @@ async function getUser() {
  	let result = await request; // wait until the promise resolves (*)
 
   	console.log("access_token: " + result.access_token)
-
+  	setCookie("access_token", result.access_token, 1)
 	const user = oauth2.getUser(result.access_token);
 
 	let userData = await user; // wait until the promise resolves (*)
@@ -51,7 +51,6 @@ async function getUser() {
 
 	if (count == 1)
 	{
-		setCookie("access_token", result.access_token, 1)
 		window.location.href = "http://localhost:8000/account";
 	}
 	else

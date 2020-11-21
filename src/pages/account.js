@@ -20,8 +20,6 @@ async function checkValidUser() {
 		redirectUri: "http://localhost:8000/callback",
 	});
 
-	console.log("Code: " + window.location.href.split('=', 2)[1]);
-
 	let oauth2 = await oauth;
 
  	let result = getCookie("access_token");
