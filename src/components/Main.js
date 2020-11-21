@@ -1,22 +1,26 @@
 import PropTypes from 'prop-types'
 import React from 'react'
+import data from '../../js discord bot/members.json'
 import pic01 from '../images/pic01.jpg'
 import pic02 from '../images/pic02.jpg'
 import pic03 from '../images/pic03.jpg'
 
 class Main extends React.Component {
+    getMembers() {
+        const newData = data.forEach(db => {
+            console.log(`${db.id}: ${db.tag}`);
+            return (
+                <p>
+                    {db.id}
+                </p>
+            )
+        });
+    }
+
     render() {
         let close = (
             <div
                 className="close"
-                onClick={() => {
-                    this.props.onCloseArticle()
-                }}
-            ></div>
-        )
-        let getMembers = (
-            <div
-                className="getMembers"
                 onClick={() => {
                     this.props.onCloseArticle()
                 }}
@@ -63,19 +67,13 @@ class Main extends React.Component {
                         <img src={pic02} alt="" />
                     </span>
                     <p>
-                        Adipiscing magna sed dolor elit. Praesent eleifend dignissim arcu,
-                        at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent
-                        urna nisi, fringila lorem et vehicula lacinia quam. Integer
-                        sollicitudin mauris nec lorem luctus ultrices.
-                    </p>
-                    <p>
-                        Nullam et orci eu lorem consequat tincidunt vivamus et sagittis
-                        libero. Mauris aliquet magna magna sed nunc rhoncus pharetra.
-                        Pellentesque condimentum sem. In efficitur ligula tate urna.
-                        Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor.
-                        Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis
-                        libero. Mauris aliquet magna magna sed nunc rhoncus amet feugiat
-                        tempus.
+                        Members here
+                        <button
+                            onClick={() => {
+                              this.getMembers()
+                            }}
+                        >
+                        </button>
                     </p>
                     {close}
                 </article>

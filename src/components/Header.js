@@ -53,13 +53,15 @@ const Header = props => (
           </button>
         </li>
         <li>
-          <button
-            onClick={() => {
-              props.onOpenArticle('login')
-            }}
-          >
-            Login
-          </button>
+          <a href="https://discord.com/api/oauth2/authorize?client_id=778425413654544385&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Fcallback&response_type=code&scope=identify">
+            <button
+              onClick={() => {
+                props.onOpenArticle('login')
+              }}
+            >
+              Login
+            </button>
+          </a>
         </li>
       </ul>
     </nav>
