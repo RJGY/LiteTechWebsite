@@ -51,11 +51,12 @@ async function getUser() {
 
 	if (count == 1)
 	{
-		console.log("Youre mom gei.")
+		window.location.href = "http://localhost:8000/account";
 	}
 	else
 	{
-		console.log("Match not found.")
+		window.location.href = "http://localhost:8000/";
+		alert("Sorry, your account is not part of LiteTech");
 	}
 
 }
