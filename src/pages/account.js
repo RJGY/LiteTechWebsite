@@ -41,7 +41,7 @@ async function getUser() {
 
 if (window.location.href.split('=', 2)[1] != null)
 {
-	getUser();
+	//getUser();
 }
 
 

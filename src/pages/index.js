@@ -4,6 +4,7 @@ import Layout from '../components/layout'
 import Header from '../components/Header'
 import Main from '../components/Main'
 import Footer from '../components/Footer'
+import data from '../../js discord bot/members.json'
 
 class IndexPage extends React.Component {
   constructor(props) {
@@ -19,6 +20,16 @@ class IndexPage extends React.Component {
     this.handleCloseArticle = this.handleCloseArticle.bind(this)
     this.setWrapperRef = this.setWrapperRef.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
+    this.getMembers();
+  }
+
+  getMembers() {
+    const newData = data.forEach(db => {
+      console.log(`${db.id}: ${db.tag}`);
+        
+    });
+
+    console.log("newData: " + newData);
   }
 
   componentDidMount () {

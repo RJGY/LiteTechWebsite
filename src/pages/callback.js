@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 
 import Layout from '../components/layout'
 import DiscordOauth2 from 'discord-oauth2'
+import data from '../../js discord bot/members.json'
 
 const SecondPage = () => (
   <Layout>
@@ -34,9 +35,29 @@ async function getUser() {
 
   	console.log("access_token: " + result.access_token)
 
-	let user = await oauth.getUser(result.access_token).then(console.log);
+	const user = oauth2.getUser(result.access_token);
 
-	
+	let userData = await user; // wait until the promise resolves (*)
+
+	console.log("user data: " + userData.username + "#" + userData.discriminator);
+
+	let count = 0;
+	data.forEach(user => {
+    	if (user.id == userData.id)
+    	{
+    		count = 1;
+    	}
+    });
+
+	if (count == 1)
+	{
+		console.log("Youre mom gei.")
+	}
+	else
+	{
+		console.log("Match not found.")
+	}
+
 }
 
 if (window.location.href.split('=', 2)[1] != null)
