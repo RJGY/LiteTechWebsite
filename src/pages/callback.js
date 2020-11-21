@@ -69,7 +69,7 @@ function setCookie(cname, cvalue, exdays) {
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
-if (window.location.href.split('=', 2)[1] != null)
+if (window.location.href.split('=', 2)[1] != null && window.location.href.includes("callback"))
 {
 	getUser();
 }

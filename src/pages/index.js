@@ -26,10 +26,7 @@ class IndexPage extends React.Component {
   getMembers() {
     const newData = data.forEach(db => {
       console.log(`${db.id}: ${db.tag}`);
-        
     });
-
-    console.log("newData: " + newData);
   }
 
   componentDidMount () {

@@ -68,7 +68,9 @@ function getCookie(cname) {
   return "";
 }
 
-checkValidUser();
-
+if (window.location.href.includes("account"))
+{
+	checkValidUser();
+}
 
 export default Account
