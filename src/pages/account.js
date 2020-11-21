@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 
 import Layout from '../components/layout'
+import DiscordOauth2 from 'discord-oauth2'
 
 const SecondPage = () => (
   <Layout>
