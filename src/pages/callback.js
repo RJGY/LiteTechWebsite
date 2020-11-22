@@ -5,7 +5,7 @@ import Layout from '../components/layout'
 import DiscordOauth2 from 'discord-oauth2'
 import data from '../../js discord bot/members.json'
 
-const SecondPage = () => (
+const Callback = () => (
   <Layout>
     <h1>Hi from the callback page.</h1>
     <p>Callback</p>
@@ -74,4 +74,4 @@ if (window.location.href.split('=', 2)[1] != null && window.location.href.includ
 }
 
 
-export default SecondPage
+export default Callback
