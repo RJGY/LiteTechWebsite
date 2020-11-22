@@ -137,6 +137,12 @@ async function checkValidUser() {
 
  	let result = getCookie("access_token");
 
+ 	if (result == null || result == "")
+	{
+	    alert("Please log in first.");
+	    window.location.href = "http://localhost:8000/";
+	}
+
   	console.log("access_token: " + result);
 
 	const user = oauth2.getUser(result);

@@ -44,7 +44,21 @@ class Main extends React.Component {
 
                     {close}
                 </article>
+                <article
+                    id="home"
+                    className={`${this.props.article === 'home' ? 'active' : ''} ${
+                        this.props.articleTimeout ? 'timeout' : ''
+                        }`}
+                    style={{ display: 'none' }}
+                >
+                    <h2 className="major">Home</h2>
+                    <span className="image main">
+                        <img src={pic01} alt="" />
+                    </span>
+                    <p>You are being redirected back to the home page. Please wait...</p>
 
+                    {close}
+                </article>
                 <article
                     id="logout"
                     className={`${this.props.article === 'logout' ? 'active' : ''} ${

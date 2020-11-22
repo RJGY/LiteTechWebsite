@@ -11,7 +11,7 @@ const Header = props => (
       <div className="inner">
         <h1>LiteTech</h1>
         <p>
-          Welcome to LiteTech
+          Welcome #name
         </p>
       </div>
     </div>
@@ -29,7 +29,18 @@ const Header = props => (
         <li>
           <button
             onClick={() => {
+              props.onOpenArticle('home')
+              home()
+            }}
+          >
+            Home
+          </button>
+        </li>
+        <li>
+          <button
+            onClick={() => {
               props.onOpenArticle('logout')
+              logout()
             }}
           >
             Logout
@@ -40,10 +51,19 @@ const Header = props => (
   </header>
 )
 
-
 Header.propTypes = {
   onOpenArticle: PropTypes.func,
   timeout: PropTypes.bool,
+}
+
+// delete cookies then redirect to index
+function logout() {
+  document.cookie = "access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  home();
+}
+
+function home() {
+  window.location.href = "http://localhost:8000/";
 }
 
 export default Header
