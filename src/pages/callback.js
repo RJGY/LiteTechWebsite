@@ -34,7 +34,6 @@ async function getUser() {
  	let result = await request; // wait until the promise resolves (*)
 
   	console.log("access_token: " + result.access_token)
-  	setCookie("access_token", result.access_token, 1)
 	const user = oauth2.getUser(result.access_token);
 
 	let userData = await user; // wait until the promise resolves (*)
@@ -42,23 +41,23 @@ async function getUser() {
 	console.log("user data: " + userData.username + "#" + userData.discriminator);
 
 	let count = 0;
+
 	data.forEach(user => {
     	if (user.id == userData.id)
     	{
-    		count = 1;
+    		count += 1;
+    		setCookie("access_token", result.access_token, 1);
+			setCookie("username", user.username, 1);
+			window.location.href = "http://localhost:8000/account";
+			return;
     	}
     });
 
-	if (count == 1)
-	{
-		window.location.href = "http://localhost:8000/account";
-	}
-	else
+	if (count == 0)
 	{
 		window.location.href = "http://localhost:8000/";
 		alert("Sorry, your account is not a member of LiteTech");
 	}
-
 }
 
 function setCookie(cname, cvalue, exdays) {

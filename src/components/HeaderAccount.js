@@ -11,7 +11,7 @@ const Header = props => (
       <div className="inner">
         <h1>LiteTech</h1>
         <p>
-          Welcome #name
+          Welcome {props.name}
         </p>
       </div>
     </div>
@@ -54,11 +54,13 @@ const Header = props => (
 Header.propTypes = {
   onOpenArticle: PropTypes.func,
   timeout: PropTypes.bool,
+  name: PropTypes.string,
 }
 
 // delete cookies then redirect to index
 function logout() {
   document.cookie = "access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   home();
 }
 

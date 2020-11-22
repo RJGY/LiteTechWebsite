@@ -25,12 +25,6 @@ class Account extends React.Component {
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
-  getMembers() {
-    const newData = data.forEach(db => {
-      console.log(`${db.id}: ${db.tag}`);
-    });
-  }
-
   componentDidMount () {
     this.timeoutId = setTimeout(() => {
         this.setState({loading: ''});
@@ -104,7 +98,7 @@ class Account extends React.Component {
       <Layout location={this.props.location}>
         <div className={`body ${this.state.loading} ${this.state.isArticleVisible ? 'is-article-visible' : ''}`}>
           <div id="wrapper">
-            <HeaderAccount onOpenArticle={this.handleOpenArticle} timeout={this.state.timeout} />
+            <HeaderAccount onOpenArticle={this.handleOpenArticle} timeout={this.state.timeout} name={getCookie("username")}/>
             <MainAccount
               isArticleVisible={this.state.isArticleVisible}
               timeout={this.state.timeout}
@@ -123,7 +117,6 @@ class Account extends React.Component {
 }
 
 export default Account
-
 
 async function checkValidUser() {
 
