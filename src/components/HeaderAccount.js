@@ -23,7 +23,7 @@ const Header = props => (
               props.onOpenArticle('backup')
             }}
           >
-            Backup Downloads
+            Backups
           </button>
         </li>
         <li>

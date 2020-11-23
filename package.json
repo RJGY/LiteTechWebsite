@@ -4,16 +4,20 @@
   "version": "1.0.0",
   "author": "Reese Gunardi",
   "dependencies": {
+    "directory-tree": "^2.2.5",
     "discord-oauth2": "^2.6.0",
     "discord.js": "^12.4.1",
     "gatsby": "^2.19.5",
     "gatsby-plugin-manifest": "^2.2.38",
     "gatsby-plugin-react-helmet": "^3.1.21",
     "gatsby-plugin-sass": "^2.1.27",
+    "list-files": "^1.1.4",
+    "list-react-files": "^0.2.0",
     "node-sass": "^4.13.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-helmet": "^5.2.1"
+    "react-helmet": "^5.2.1",
+    "react-youtube-playlist": "^2.2.8"
   },
   "keywords": [
     "gatsby"

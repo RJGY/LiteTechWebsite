@@ -56,7 +56,6 @@ const Header = props => (
         <li>
           <button
             onClick={() => {
-              props.onOpenArticle('login')
               autoLogin();
             }}
           >

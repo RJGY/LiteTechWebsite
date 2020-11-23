@@ -9,6 +9,7 @@ import Layout from '../components/layout'
 import DiscordOauth2 from 'discord-oauth2'
 import data from '../../js discord bot/members.json'
 
+
 class Account extends React.Component {
   constructor(props) {
     super(props)
@@ -152,11 +153,7 @@ async function checkValidUser() {
     	}
     });
 
-	if (count == 1)
-	{
-		alert("Yea it works");
-	}
-	else
+	if (count == 0)
 	{
 		window.location.href = "http://localhost:8000/";
 		alert("Sorry, your account is not a member of LiteTech");
@@ -176,6 +173,10 @@ function getCookie(cname) {
     }
   }
   return "";
+}
+
+function findStuff() {
+	//listReactFiles(__dirname).then(files => console.log(files))
 }
 
 if (window.location.href.includes("account"))

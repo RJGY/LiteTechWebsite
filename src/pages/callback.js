@@ -49,7 +49,6 @@ async function getUser() {
     		setCookie("access_token", result.access_token, 1);
 			setCookie("username", user.username, 1);
 			window.location.href = "http://localhost:8000/account";
-			return;
     	}
     });
 

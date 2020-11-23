@@ -4,8 +4,29 @@ import React from 'react'
 import pic01 from '../images/pic01.jpg'
 import pic02 from '../images/pic02.jpg'
 import pic03 from '../images/pic03.jpg'
+import memberData from '../../js discord bot/members.json'
+import key from '../../js discord bot/youtubekey.json'
 
 class Main extends React.Component {
+    state = {
+        externalData: null,
+    };
+
+    componentDidMount() {
+        this._asyncRequest = getYoutubeVideos().then(
+          externalData => {
+            this._asyncRequest = null;
+            this.setState({externalData});
+          }
+        );
+    }
+
+    componentWillUnmount() {
+        if (this._asyncRequest) {
+          this._asyncRequest.cancel();
+        }
+    }
+
     render() {
         let close = (
             <div
@@ -15,6 +36,33 @@ class Main extends React.Component {
                 }}
             ></div>
         )
+        var youtubeVideo;
+        if (this.state.externalData === null) {
+            youtubeVideo = (
+                <div>Loading</div>
+            )
+        } else {
+            youtubeVideo = (
+            <div>
+                {this.state.externalData.items.map(({ id, snippet = {} }) => {
+                    const { title, thumbnails = {}, resourceId = {} } = snippet;
+                    const { medium } = thumbnails;
+                    return (
+                      <div key={id}>
+                        <a href={`https://www.youtube.com/watch?v=${resourceId.videoId}`}>
+                          <p>
+                            <img width={medium.width} height={medium.height} src={medium.url} alt="" />
+                          </p>
+                          <p>{ title }</p>
+                        </a>
+                      </div>
+                    )
+                })}
+            </div>  
+
+            )
+        }
+
         return (
             <div
                 ref={this.props.setWrapperRef}
@@ -52,18 +100,9 @@ class Main extends React.Component {
                     style={{ display: 'none' }}
                 >
                     <h2 className="major">Current Members</h2>
-                    <span className="image main">
-                        <img src={pic02} alt="" />
-                    </span>
-                    <p>
-                        Members here
-                        <button
-                            onClick={() => {
-                              this.getMembers()
-                            }}
-                        >
-                        </button>
-                    </p>
+
+                    <MemberList/>
+
                     {close}
                 </article>
 
@@ -75,18 +114,9 @@ class Main extends React.Component {
                     style={{ display: 'none' }}
                 >
                     <h2 className="major">Youtube Videos</h2>
-                    <span className="image main">
-                        <img src={pic03} alt="" />
-                    </span>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur et adipiscing elit. Praesent
-                        eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam
-                        erat volutpat. Praesent urna nisi, fringila lorem et vehicula
-                        lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices.
-                        Aliquam libero et malesuada fames ac ante ipsum primis in faucibus.
-                        Cras viverra ligula sit amet ex mollis mattis lorem ipsum dolor sit
-                        amet.
-                    </p>
+
+                    {youtubeVideo}
+
                     {close}
                 </article>
 
@@ -136,5 +166,25 @@ Main.propTypes = {
     timeout: PropTypes.bool,
     setWrapperRef: PropTypes.func.isRequired,
 }
+
+function MemberList() {
+    const listItems = memberData.map((member) =>
+        <li key={member.username}>
+            {member.username}
+        </li>
+    );
+    return (
+        <ul>{listItems}</ul>
+    );
+}
+
+const YOUTUBE_PLAYLIST_ITEMS_API = 'https://www.googleapis.com/youtube/v3/playlistItems';
+
+async function getYoutubeVideos() {
+  const res = await fetch(`${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&maxResults=50&playlistId=PLUDyUa7vgsQlEST5MYSqTmc03U0Mr_Ihc&key=${key.key}`)
+  const data = await res.json();
+  return data;
+}
+
 
 export default Main
