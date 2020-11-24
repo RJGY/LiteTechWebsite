@@ -6,7 +6,9 @@ import pic02 from '../images/pic02.jpg'
 import pic03 from '../images/pic03.jpg'
 import memberData from '../../js discord bot/members.json'
 import key from '../../js discord bot/youtubekey.json'
-
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 class Main extends React.Component {
     state = {
         externalData: null,
@@ -43,22 +45,24 @@ class Main extends React.Component {
             )
         } else {
             youtubeVideo = (
-            <div>
-                {this.state.externalData.items.map(({ id, snippet = {} }) => {
-                    const { title, thumbnails = {}, resourceId = {} } = snippet;
-                    const { medium } = thumbnails;
-                    return (
-                      <div key={id}>
-                        <a href={`https://www.youtube.com/watch?v=${resourceId.videoId}`}>
-                          <p>
-                            <img width={medium.width} height={medium.height} src={medium.url} alt="" />
-                          </p>
-                          <p>{ title }</p>
-                        </a>
-                      </div>
-                    )
-                })}
-            </div>  
+                <Container>
+                    {this.state.externalData.items.map(({ id, snippet = {} }) => {
+                        const { title, thumbnails = {}, resourceId = {} } = snippet;
+                        const { medium } = thumbnails;
+                        return (
+                            <Row key={id}>
+                                <a href={`https://www.youtube.com/watch?v=${resourceId.videoId}`}>
+                                <Col xs={4}>
+                                    <img width={ medium.width } height={ medium.height } src={ medium.url } className="float-left" alt="" />
+                                </Col>
+                                <Col xs={8}>
+                                    <p>{ title }</p>
+                                </Col>
+                                </a>
+                            </Row>
+                        )
+                    })}
+                </Container>
 
             )
         }
@@ -185,6 +189,5 @@ async function getYoutubeVideos() {
   const data = await res.json();
   return data;
 }
-
 
 export default Main

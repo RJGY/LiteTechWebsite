@@ -4,9 +4,33 @@ import React from 'react'
 import pic01 from '../images/pic01.jpg'
 import pic02 from '../images/pic02.jpg'
 import pic03 from '../images/pic03.jpg'
+import backup from '../../js discord bot/backups.json'
+import FileSaver from 'file-saver';
+const path = "../../backups/"
 
 class Main extends React.Component {
+    downloadFile(file) {
+        FileSaver.saveAs(path + file, file);
+    }
+
     render() {
+        let backups = (
+            <div>
+                {backup.map(file => {
+                    return (
+                        <div key={file.date_modified}>
+                            <button
+                                onClick={() => {
+                                  this.downloadFile(file.name)
+                                }}
+                            >
+                                {file.name}
+                            </button>
+                        </div>
+                    )
+                })}
+            </div>
+        )
         let close = (
             <div
                 className="close"
@@ -32,6 +56,20 @@ class Main extends React.Component {
                     <span className="image main">
                         <img src={pic01} alt="" />
                     </span>
+                    
+                    {backups}
+
+                    {close}
+                </article>
+
+                <article
+                    id="serverip"
+                    className={`${this.props.article === 'serverip' ? 'active' : ''} ${
+                        this.props.articleTimeout ? 'timeout' : ''
+                        }`}
+                    style={{ display: 'none' }}
+                >
+                    <h2 className="major">Server IP Addresses</h2>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur et adipiscing elit. Praesent
                         eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam
@@ -44,6 +82,7 @@ class Main extends React.Component {
 
                     {close}
                 </article>
+
                 <article
                     id="home"
                     className={`${this.props.article === 'home' ? 'active' : ''} ${
@@ -89,5 +128,7 @@ Main.propTypes = {
     timeout: PropTypes.bool,
     setWrapperRef: PropTypes.func.isRequired,
 }
+
+
 
 export default Main

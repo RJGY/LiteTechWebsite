@@ -29,6 +29,15 @@ const Header = props => (
         <li>
           <button
             onClick={() => {
+              props.onOpenArticle('serverip')
+            }}
+          >
+            Server IP
+          </button>
+        </li>
+        <li>
+          <button
+            onClick={() => {
               props.onOpenArticle('home')
               home()
             }}
@@ -57,7 +66,7 @@ Header.propTypes = {
   name: PropTypes.string,
 }
 
-// delete cookies then redirect to index
+
 function logout() {
   document.cookie = "access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";

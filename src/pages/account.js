@@ -3,7 +3,7 @@ import { Link } from 'gatsby'
 
 import HeaderAccount from '../components/HeaderAccount'
 import MainAccount from '../components/MainAccount'
-import FooterAccount from '../components/FooterAccount'
+import Footer from '../components/Footer'
 
 import Layout from '../components/layout'
 import DiscordOauth2 from 'discord-oauth2'
@@ -108,7 +108,7 @@ class Account extends React.Component {
               onCloseArticle={this.handleCloseArticle}
               setWrapperRef={this.setWrapperRef}
             />
-            <FooterAccount timeout={this.state.timeout} />
+            <Footer timeout={this.state.timeout} />
           </div>
           <div id="bg"></div>
         </div>
@@ -173,10 +173,6 @@ function getCookie(cname) {
     }
   }
   return "";
-}
-
-function findStuff() {
-	//listReactFiles(__dirname).then(files => console.log(files))
 }
 
 if (window.location.href.includes("account"))
