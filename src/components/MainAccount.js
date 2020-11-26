@@ -4,6 +4,7 @@ import React from 'react'
 import pic01 from '../images/pic01.png'
 import pic02 from '../images/pic02.png'
 import pic03 from '../images/pic03.png'
+import icon from '../images/icon.png'
 import backup from '../../js discord bot/backups.json'
 import FileSaver from 'file-saver';
 
@@ -55,10 +56,7 @@ class Main extends React.Component {
                     style={{ display: 'none' }}
                 >
                     <h2 className="major">Backup Downloads</h2>
-                    <span className="image main">
-                        <img src={pic03} alt="" />
-                    </span>
-                    
+
                     {backups}
 
                     {close}
