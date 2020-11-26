@@ -5,7 +5,7 @@ import data from '../../js discord bot/members.json'
 const Header = props => (
   <header id="header" style={props.timeout ? { display: 'none' } : {}}>
     <div className="logo">
-      <span className="icon fa-diamond"></span>
+      <span className="icon fa-superpowers"></span>
     </div>
     <div className="content">
       <div className="inner">
