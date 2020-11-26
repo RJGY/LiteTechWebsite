@@ -6,7 +6,9 @@ import icon from '../images/icon.png'
 const Header = props => (
   <header id="header" style={props.timeout ? { display: 'none' } : {}}>
     <div className="logo">
-      <span className="icon fa-superpowers"></span>
+      <span className="icon">
+        <img src={icon} alt="" height="100%" width="100%"/>
+      </span>
     </div>
     <div className="content">
       <div className="inner">
