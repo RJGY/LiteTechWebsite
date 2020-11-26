@@ -9,6 +9,8 @@ import key from '../../js discord bot/youtubekey.json'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Table from 'react-bootstrap/Table'
+
 class Main extends React.Component {
     state = {
         externalData: null,
@@ -45,24 +47,34 @@ class Main extends React.Component {
             )
         } else {
             youtubeVideo = (
-                <Container>
-                    {this.state.externalData.items.map(({ id, snippet = {} }) => {
-                        const { title, thumbnails = {}, resourceId = {} } = snippet;
-                        const { medium } = thumbnails;
-                        return (
-                            <Row key={id}>
-                                <a href={`https://www.youtube.com/watch?v=${resourceId.videoId}`}>
-                                <Col xs={4}>
-                                    <img width={ medium.width } height={ medium.height } src={ medium.url } className="float-left" alt="" />
-                                </Col>
-                                <Col xs={8}>
-                                    <p>{ title }</p>
-                                </Col>
-                                </a>
-                            </Row>
-                        )
-                    })}
-                </Container>
+                <Table hover borderless size="sm" style={{verticalAlign:top}}>
+                    <tbody>
+                        {this.state.externalData.items.map(({ id, snippet = {} }) => {
+                            const { title, thumbnails = {}, resourceId = {}, description } = snippet;
+                            const { medium } = thumbnails;
+                            const shortDesc = description.substring(0,125);
+                            return (
+                                <tr key={id} >
+                                    <td>
+                                        <a href={`https://www.youtube.com/watch?v=${resourceId.videoId}`} target="_blank">
+                                            <div>
+                                                <img width='100%' height='100%' src={ medium.url } alt="" />
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href={`https://www.youtube.com/watch?v=${resourceId.videoId}`} target="_blank">
+                                            <div className="text-xs-right">
+                                                <p><b>{ title }</b></p>
+                                                <p>{ shortDesc }...</p>
+                                            </div>
+                                        </a>
+                                    </td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </Table>
 
             )
         }
@@ -86,7 +98,7 @@ class Main extends React.Component {
                     </span>
                     <p>
                         LiteTech is a relatively new technical server, that will update to each major stable release of the game.
-                        You can keep up to date with our progress over on http://youtube.litetech.cf/
+                        You can keep up to date with our progress over <a href="https://www.youtube.com/channel/UCz2OSSQHYe0-vlgh7FQrM9g" target="_blank">here.</a>
                     </p>
                     <p>
                         Our members are a collection of players throughout the world who enjoy creating anything from efficient 
@@ -116,7 +128,9 @@ class Main extends React.Component {
                         }`}
                     style={{ display: 'none' }}
                 >
-                    <h2 className="major">Youtube Videos</h2>
+                    <a href="https://www.youtube.com/channel/UCz2OSSQHYe0-vlgh7FQrM9g/videos" target="_blank">
+                        <h2 className="major">Youtube Videos</h2>
+                    </a>
 
                     {youtubeVideo}
 
@@ -130,10 +144,14 @@ class Main extends React.Component {
                         }`}
                     style={{ display: 'none' }}
                 >
-                    <h2 className="major">Discord</h2>
+                    <a href="https://discord.gg/WnWJ7adHNG" target="_blank">
+                        <h2 className="major">Discord</h2>
+                    </a>
+
                     <div>
                         <iframe title="Discord iFrame" src="https://discord.com/widget?id=732264415268700160&theme=dark" width="100%" height="500" allowtransparency="true" frameBorder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
                     </div>
+
                     {close}
                 </article>
 
@@ -184,8 +202,9 @@ function MemberList() {
 const YOUTUBE_PLAYLIST_ITEMS_API = 'https://www.googleapis.com/youtube/v3/playlistItems';
 
 async function getYoutubeVideos() {
-  const res = await fetch(`${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&maxResults=50&playlistId=PLUDyUa7vgsQlEST5MYSqTmc03U0Mr_Ihc&key=${key.key}`)
+  const res = await fetch(`${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&maxResults=10&playlistId=PLUDyUa7vgsQlEST5MYSqTmc03U0Mr_Ihc&key=${key.key}`)
   const data = await res.json();
+  console.log(data);
   return data;
 }
 
