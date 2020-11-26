@@ -29,15 +29,6 @@ const Header = props => (
         <li>
           <button
             onClick={() => {
-              props.onOpenArticle('serverip')
-            }}
-          >
-            Server IP
-          </button>
-        </li>
-        <li>
-          <button
-            onClick={() => {
               props.onOpenArticle('home')
               home()
             }}

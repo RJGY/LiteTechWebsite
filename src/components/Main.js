@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import pic01 from '../images/pic01.jpg'
-import pic02 from '../images/pic02.jpg'
+import pic01 from '../images/pic01.png'
+import pic02 from '../images/pic02.png'
 import pic03 from '../images/pic03.jpg'
 import memberData from '../../js discord bot/members.json'
 import key from '../../js discord bot/youtubekey.json'
@@ -104,7 +104,9 @@ class Main extends React.Component {
                     style={{ display: 'none' }}
                 >
                     <h2 className="major">Current Members</h2>
-
+                    <span className="image main">
+                        <img src={pic02} alt="" />
+                    </span>
                     <MemberList/>
 
                     {close}

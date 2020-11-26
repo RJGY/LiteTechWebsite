@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import pic01 from '../images/pic01.jpg'
-import pic02 from '../images/pic02.jpg'
-import pic03 from '../images/pic03.jpg'
+import pic01 from '../images/pic01.png'
+import pic02 from '../images/pic02.png'
+import pic03 from '../images/pic03.png'
 import backup from '../../js discord bot/backups.json'
 import FileSaver from 'file-saver';
 
@@ -56,31 +56,10 @@ class Main extends React.Component {
                 >
                     <h2 className="major">Backup Downloads</h2>
                     <span className="image main">
-                        <img src={pic01} alt="" />
+                        <img src={pic03} alt="" />
                     </span>
                     
                     {backups}
-
-                    {close}
-                </article>
-
-                <article
-                    id="serverip"
-                    className={`${this.props.article === 'serverip' ? 'active' : ''} ${
-                        this.props.articleTimeout ? 'timeout' : ''
-                        }`}
-                    style={{ display: 'none' }}
-                >
-                    <h2 className="major">Server IP Addresses</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur et adipiscing elit. Praesent
-                        eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam
-                        erat volutpat. Praesent urna nisi, fringila lorem et vehicula
-                        lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices.
-                        Aliquam libero et malesuada fames ac ante ipsum primis in faucibus.
-                        Cras viverra ligula sit amet ex mollis mattis lorem ipsum dolor sit
-                        amet.
-                    </p>
 
                     {close}
                 </article>
