@@ -6,7 +6,8 @@ import pic02 from '../images/pic02.jpg'
 import pic03 from '../images/pic03.jpg'
 import backup from '../../js discord bot/backups.json'
 import FileSaver from 'file-saver';
-const path = "../../backups/"
+
+const path = '../../backups/';
 
 class Main extends React.Component {
     downloadFile(file) {
@@ -14,6 +15,7 @@ class Main extends React.Component {
     }
 
     render() {
+
         let backups = (
             <div>
                 {backup.map(file => {
