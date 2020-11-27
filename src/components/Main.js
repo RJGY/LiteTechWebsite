@@ -64,7 +64,7 @@ class Main extends React.Component {
                                     </td>
                                     <td>
                                         <a href={`https://www.youtube.com/watch?v=${resourceId.videoId}`} target="_blank">
-                                            <div className="text-xs-right">
+                                            <div>
                                                 <p><b>{ title }</b></p>
                                                 <p>{ shortDesc }...</p>
                                             </div>
