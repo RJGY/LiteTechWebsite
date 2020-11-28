@@ -8,9 +8,9 @@ import pic03 from '../images/pic03.png'
 import backup from '../../js discord bot/backups.json'
 import FileSaver from 'file-saver'
 
-const dailyPath = '../../backups/'
-const manualPath = "../../backups/manual/"
-const weeklyPath = '../../backups/weekly/'
+const dailyPath = 'Z:/gatsby-projects/litetechwebsite/backups/';
+const manualPath = 'Z:/gatsby-projects/litetechwebsite/backups/manual/';
+const weeklyPath = 'Z:/gatsby-projects/litetechwebsite/backups/weekly/';
 
 class Main extends React.Component {
     downloadFile(file, path) {
@@ -61,6 +61,7 @@ class Main extends React.Component {
                             <button
                                 onClick={() => {
                                   this.downloadFile(file.name, weeklyPath)
+                                  console.log(weeklyPath + file.name)
                                 }}
                             >
                                 {file.name}

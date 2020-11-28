@@ -46,7 +46,6 @@ function getBackups() {
 	fsLibrary.readdirSync(backupFolder).forEach(file => {
 	  	let stats = fsLibrary.statSync(backupFolder + file)
 	  	// Check if it is file or directory
-
 	  	if (stats.isDirectory())
 	  	{
 	  		return;
@@ -63,7 +62,6 @@ function getBackups() {
 	fsLibrary.readdirSync(backupFolder + manualBackupFolder).forEach(file => {
 	  	let stats = fsLibrary.statSync(backupFolder + manualBackupFolder + file)
 	  	// Check if it is file or directory
-
 	  	if (stats.isDirectory())
 	  	{
 	  		return;
@@ -80,7 +78,6 @@ function getBackups() {
 	fsLibrary.readdirSync(backupFolder + weeklyBackupFolder).forEach(file => {
 	  	let stats = fsLibrary.statSync(backupFolder + weeklyBackupFolder + file)
 	  	// Check if it is file or directory
-
 	  	if (stats.isDirectory())
 	  	{
 	  		return;
