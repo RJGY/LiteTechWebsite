@@ -2,10 +2,11 @@
 .cache
 node_modules
 yarn-error.log
+backups
 
 # Build directory
 /public
 .DS_Store
 js discord bot/youtubekey.json
 js discord bot/config.json
-
+/js discord bot/config.json

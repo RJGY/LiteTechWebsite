@@ -6,25 +6,27 @@ import pic02 from '../images/pic02.png'
 import pic03 from '../images/pic03.png'
 
 import backup from '../../js discord bot/backups.json'
-import FileSaver from 'file-saver';
+import FileSaver from 'file-saver'
 
-const path = '../../backups/';
+const dailyPath = '../../backups/';
+const weeklyPath = '../../backups/weekly/';
+const manualPath = '../../backups/manual/';
 
 class Main extends React.Component {
-    downloadFile(file) {
+    downloadFile(file, path) {
         FileSaver.saveAs(path + file, file);
     }
 
     render() {
-
         let backups = (
             <div>
-                {backup.map(file => {
+                <h3 className="major">Manual Backups</h3>
+                {backup.manual.map(file => {
                     return (
                         <div key={file.date_modified}>
                             <button
                                 onClick={() => {
-                                  this.downloadFile(file.name)
+                                  this.downloadFile(file.name, manualPath)
                                 }}
                             >
                                 {file.name}
@@ -32,8 +34,42 @@ class Main extends React.Component {
                         </div>
                     )
                 })}
+                <p></p>
+
+                <h3 className="major">Daily Backups</h3>
+                {backup.daily.map(file => {
+                    return (
+                        <div key={file.date_modified}>
+                            <button
+                                onClick={() => {
+                                  this.downloadFile(file.name, dailyPath)
+                                }}
+                            >
+                                {file.name}
+                            </button>
+                        </div>
+                    )
+                })}
+                <p></p>
+
+                <h3 className="major">Weekly Backups</h3>
+                {backup.weekly.map(file => {
+                    return (
+                        <div key={file.date_modified}>
+                            <button
+                                onClick={() => {
+                                  this.downloadFile(file.name, weeklyPath)
+                                }}
+                            >
+                                {file.name}
+                            </button>
+                        </div>
+                    )
+                })}
+                <p></p>
             </div>
         )
+
         let close = (
             <div
                 className="close"
@@ -56,7 +92,6 @@ class Main extends React.Component {
                     style={{ display: 'none' }}
                 >
                     <h2 className="major">Backup Downloads</h2>
-
                     {backups}
 
                     {close}

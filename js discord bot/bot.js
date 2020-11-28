@@ -10,6 +10,8 @@ const client = new Discord.Client();
 
 // path to backup folder
 const backupFolder = '../backups/';
+const weeklyBackupFolder = 'weekly/';
+const manualBackupFolder = 'manual/';
 
 // when the client is ready, run this code
 // this event will only trigger one time after logging in
@@ -35,29 +37,80 @@ function getMembers() {
 }
 
 function getBackups() {
-	// declare array.
-	let arrayOfBackups = []
-	// loop through items in backup folder.
+	// declare arrays.
+	let arrayOfDailyBackups = [];
+	let arrayOfManualBackups = [];
+	let arrayOfWeeklyBackups = [];
+
+	// loop through items in daily backup folder.
 	fsLibrary.readdirSync(backupFolder).forEach(file => {
-	  	stats = fsLibrary.statSync(backupFolder + '/' + file)
+	  	let stats = fsLibrary.statSync(backupFolder + file)
+	  	// Check if it is file or directory
+
+	  	if (stats.isDirectory())
+	  	{
+	  		return;
+	  	}
+
 	    // The timestamp when the file 
 	    // is last modified and parse it into a json.   
-	    const fileData = "{ \"name\": \"" + file + "\", \"date_modified\": \"" + stats.mtime.getTime() + "\" }";
-	    const data = JSON.parse(fileData);
-	   	arrayOfBackups.push(data);
+	    let fileData = "{ \"name\": \"" + file + "\", \"date_modified\": \"" + stats.mtime.getTime() + "\" }";
+	    let data = JSON.parse(fileData);
+	   	arrayOfDailyBackups.push(data);
 	});
 
-	//console.log(arrayOfBackups);
+	// loop through items in manual backup folder.
+	fsLibrary.readdirSync(backupFolder + manualBackupFolder).forEach(file => {
+	  	let stats = fsLibrary.statSync(backupFolder + manualBackupFolder + file)
+	  	// Check if it is file or directory
+
+	  	if (stats.isDirectory())
+	  	{
+	  		return;
+	  	}
+
+	    // The timestamp when the file 
+	    // is last modified and parse it into a json.   
+	    let fileData = "{ \"name\": \"" + file + "\", \"date_modified\": \"" + stats.mtime.getTime() + "\" }";
+	    let data = JSON.parse(fileData);
+	   	arrayOfManualBackups.push(data);
+	});
+
+	// loop through items in weekly backup folder.
+	fsLibrary.readdirSync(backupFolder + weeklyBackupFolder).forEach(file => {
+	  	let stats = fsLibrary.statSync(backupFolder + weeklyBackupFolder + file)
+	  	// Check if it is file or directory
+
+	  	if (stats.isDirectory())
+	  	{
+	  		return;
+	  	}
+
+	    // The timestamp when the file 
+	    // is last modified and parse it into a json.   
+	    let fileData = "{ \"name\": \"" + file + "\", \"date_modified\": \"" + stats.mtime.getTime() + "\" }";
+	    let data = JSON.parse(fileData);
+	   	arrayOfWeeklyBackups.push(data);
+	});
+
 
 	//sort array
-	arrayOfBackups.sort(function(a, b){return b.date_modified-a.date_modified})
+	arrayOfDailyBackups.sort(function(a, b){return b.date_modified-a.date_modified});
+	arrayOfManualBackups.sort(function(a, b){return b.date_modified-a.date_modified});
+	arrayOfWeeklyBackups.sort(function(a, b){return b.date_modified-a.date_modified});
 
-	//console.log(arrayOfBackups);
-
-	let latestBackups = arrayOfBackups.slice(0,5);
+	// Get first 5 results.
+	let latestDailyBackups = arrayOfDailyBackups.slice(0,5);
+	let latestManualBackups = arrayOfManualBackups.slice(0,5);
+	let latestWeeklyBackups = arrayOfWeeklyBackups.slice(0,5);
 
 	// convert data to string
-	let data = JSON.stringify(latestBackups);
+	let dailyData = "{ \"daily\" : " + JSON.stringify(latestDailyBackups) + ",\n";
+	let manualData = " \"manual\" : " + JSON.stringify(latestManualBackups) + ",\n";
+	let weeklyData = " \"weekly\" : " + JSON.stringify(latestWeeklyBackups) + "}";
+
+	// merge all data
+	let data = dailyData + manualData + weeklyData;
 
 	fsLibrary.writeFileSync('backups.json', data);
 }
