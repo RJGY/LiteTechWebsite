@@ -13,16 +13,20 @@
     "gatsby-plugin-manifest": "^2.2.38",
     "gatsby-plugin-react-helmet": "^3.1.21",
     "gatsby-plugin-sass": "^2.1.27",
+    "js-cookie": "^2.2.1",
     "list-files": "^1.1.4",
     "list-react-files": "^0.2.0",
     "node-dir": "^0.1.17",
     "node-sass": "^4.13.1",
+    "node-static": "^0.7.11",
     "react": "^16.12.0",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^5.2.1",
     "react-router": "^5.2.0",
-    "react-youtube-playlist": "^2.2.8"
+    "react-youtube-playlist": "^2.2.8",
+    "serve": "^11.3.2",
+    "serve-static": "^1.14.1"
   },
   "keywords": [
     "gatsby"

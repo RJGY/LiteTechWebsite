@@ -4,6 +4,7 @@ import { Link } from 'gatsby'
 import Layout from '../components/layout'
 import DiscordOauth2 from 'discord-oauth2'
 import data from '../../js discord bot/members.json'
+import cookies from 'js-cookie';
 
 const Callback = () => (
   <Layout>
@@ -48,6 +49,7 @@ async function getUser() {
     		count += 1;
     		setCookie("access_token", result.access_token, 1);
 			setCookie("username", user.username, 1);
+			cookies.set('access_token', 'result.access_token', { expires: 1, domain: 'https://localhost:8080', path: '/' })
 			window.location.href = "http://localhost:8000/account";
     	}
     });
@@ -65,6 +67,8 @@ function setCookie(cname, cvalue, exdays) {
   var expires = "expires="+d.toUTCString();
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
+
+
 
 if (window.location.href.split('=', 2)[1] != null && window.location.href.includes("callback"))
 {

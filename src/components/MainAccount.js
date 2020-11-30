@@ -8,9 +8,9 @@ import pic03 from '../images/pic03.png'
 import backup from '../../js discord bot/backups.json'
 import FileSaver from 'file-saver'
 
-const dailyPath = 'Z:/gatsby-projects/litetechwebsite/backups/';
-const manualPath = 'Z:/gatsby-projects/litetechwebsite/backups/manual/';
-const weeklyPath = 'Z:/gatsby-projects/litetechwebsite/backups/weekly/';
+const dailyPath = 'localhost:9000/';
+const manualPath = dailyPath + 'manual/';
+const weeklyPath = dailyPath + 'weekly/';
 
 class Main extends React.Component {
     downloadFile(file, path) {
