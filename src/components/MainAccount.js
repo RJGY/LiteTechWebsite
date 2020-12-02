@@ -26,8 +26,8 @@ class Main extends React.Component {
                         <div key={file.date_modified}>
                             <button
                                 onClick={() => {
-                                  this.downloadFile(file.name, manualPath)
-                                  console.log(manualPath + file.name)
+                                    console.log(manualPath + file.name)
+                                    this.downloadFile(file.name, manualPath)
                                 }}
                             >
                                 {file.name}
@@ -43,8 +43,9 @@ class Main extends React.Component {
                         <div key={file.date_modified}>
                             <button
                                 onClick={() => {
-                                  this.downloadFile(file.name, dailyPath)
-                                  console.log(dailyPath + file.name)
+                                    console.log(dailyPath + file.name)
+                                    this.downloadFile(file.name, dailyPath)
+                                  
                                 }}
                             >
                                 {file.name}
@@ -60,8 +61,8 @@ class Main extends React.Component {
                         <div key={file.date_modified}>
                             <button
                                 onClick={() => {
-                                  this.downloadFile(file.name, weeklyPath)
-                                  console.log(weeklyPath + file.name)
+                                    console.log(weeklyPath + file.name)
+                                    this.downloadFile(file.name, weeklyPath)
                                 }}
                             >
                                 {file.name}

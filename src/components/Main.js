@@ -16,6 +16,8 @@ class Main extends React.Component {
         externalData: null,
     };
 
+    
+
     componentDidMount() {
         this._asyncRequest = getYoutubeVideos().then(
           externalData => {
@@ -32,6 +34,25 @@ class Main extends React.Component {
     }
 
     render() {
+        let textStyle = {
+            paddingTop:'1.3em',
+            float: 'right',
+            display: 'inline', /* inline-block */
+            width: '55%',
+            height: '155px',
+            overflow: 'hidden',
+            margin: 'auto', 
+        };
+
+        let imgStyle = {
+            paddingTop:'1.4em',
+            float: 'left',
+            display: 'flex', /* flex */
+            width: '40%',
+            height: '155px',
+            overflow: 'hidden',  
+        };
+
         let close = (
             <div
                 className="close"
@@ -47,34 +68,37 @@ class Main extends React.Component {
             )
         } else {
             youtubeVideo = (
-                <Table hover borderless size="sm" style={{verticalAlign:top}}>
-                    <tbody>
-                        {this.state.externalData.items.map(({ id, snippet = {} }) => {
-                            const { title, thumbnails = {}, resourceId = {}, description } = snippet;
-                            const { medium } = thumbnails;
-                            const shortDesc = description.substring(0,125);
-                            return (
-                                <tr key={id} >
-                                    <td>
+                <div>
+                    {this.state.externalData.items.map(({ id, snippet = {} }) => {
+                        const { title, thumbnails = {}, resourceId = {}, description } = snippet;
+                        const { medium } = thumbnails;
+                        return (
+                        <>
+                            <div key={id} >
+                                <span style={imgStyle}>
+                                    <div>
                                         <a href={`https://www.youtube.com/watch?v=${resourceId.videoId}`} target="_blank">
                                             <div>
                                                 <img width='100%' height='100%' src={ medium.url } alt="" />
                                             </div>
                                         </a>
-                                    </td>
-                                    <td>
+                                    </div>
+                                </span>
+                                <span style={textStyle}>
+                                    <div>
                                         <a href={`https://www.youtube.com/watch?v=${resourceId.videoId}`} target="_blank">
-                                            <div>
-                                                <p><b>{ title }</b></p>
-                                                <p>{ shortDesc }...</p>
-                                            </div>
+                                            <p><b>{ title }</b></p>
+                                            <p>{ description }...</p>
                                         </a>
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </Table>
+                                    </div>
+                                </span>
+
+                            </div>
+                            <p></p>
+                        </>
+                        )
+                    })}
+                </div>
 
             )
         }
