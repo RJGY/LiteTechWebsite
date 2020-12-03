@@ -6,13 +6,26 @@ import DiscordOauth2 from 'discord-oauth2'
 import data from '../../js discord bot/members.json'
 import cookies from 'js-cookie';
 
-const Callback = () => (
-  <Layout>
-    <h1>Hi from the callback page.</h1>
-    <p>Callback</p>
-    <Link to="/">Go back to the homepage</Link>
-  </Layout>
-)
+
+class Callback extends React.Component {
+	render() {
+		if (foo.split('=', 2)[1] != null) {
+			getUser();
+		}
+		return(
+			<Layout>
+			    <h1>Hi from the callback page.</h1>
+			    <p>Callback</p>
+			    <Link to="/">Go back to the homepage</Link>
+			</Layout>
+		) 
+	}
+}
+
+const foo = () => {
+  const url = typeof window !== 'undefined' ? window.location.href : '';
+  return url;
+};
 
 async function getUser() {
 
@@ -66,13 +79,6 @@ function setCookie(cname, cvalue, exdays) {
   d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
   var expires = "expires="+d.toUTCString();
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
-
-
-if (window.location.href.split('=', 2)[1] != null && window.location.href.includes("callback"))
-{
-	getUser();
 }
 
 

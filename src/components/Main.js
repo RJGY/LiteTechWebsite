@@ -6,17 +6,11 @@ import pic02 from '../images/pic02.png'
 import pic03 from '../images/pic03.jpg'
 import memberData from '../../js discord bot/members.json'
 import key from '../../js discord bot/youtubekey.json'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Table from 'react-bootstrap/Table'
 
 class Main extends React.Component {
     state = {
         externalData: null,
     };
-
-    
 
     componentDidMount() {
         this._asyncRequest = getYoutubeVideos().then(
@@ -39,7 +33,6 @@ class Main extends React.Component {
             float: 'right',
             display: 'inline', /* inline-block */
             width: '55%',
-            height: '155px',
             overflow: 'hidden',
             margin: 'auto', 
         };
@@ -49,7 +42,6 @@ class Main extends React.Component {
             float: 'left',
             display: 'flex', /* flex */
             width: '40%',
-            height: '155px',
             overflow: 'hidden',  
         };
 

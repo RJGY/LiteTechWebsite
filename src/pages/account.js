@@ -95,6 +95,7 @@ class Account extends React.Component {
   }
 
   render() {
+    checkValidUser();
     return (
       <Layout location={this.props.location}>
         <div className={`body ${this.state.loading} ${this.state.isArticleVisible ? 'is-article-visible' : ''}`}>
@@ -173,9 +174,4 @@ function getCookie(cname) {
     }
   }
   return "";
-}
-
-if (window.location.href.includes("account"))
-{
-	checkValidUser();
 }
