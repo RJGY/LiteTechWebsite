@@ -8,9 +8,10 @@ import Footer from '../components/Footer'
 import Layout from '../components/layout'
 import DiscordOauth2 from 'discord-oauth2'
 import data from '../../js discord bot/members.json'
-
+import CookieConsent from "react-cookie-consent";
 
 class Account extends React.Component {
+
   constructor(props) {
     super(props)
     this.state = {
@@ -24,6 +25,7 @@ class Account extends React.Component {
     this.handleCloseArticle = this.handleCloseArticle.bind(this)
     this.setWrapperRef = this.setWrapperRef.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
+    checkValidUser();
   }
 
   componentDidMount () {
@@ -66,7 +68,6 @@ class Account extends React.Component {
   }
 
   handleCloseArticle() {
-
     this.setState({
       articleTimeout: !this.state.articleTimeout
     })
@@ -95,7 +96,6 @@ class Account extends React.Component {
   }
 
   render() {
-    checkValidUser();
     return (
       <Layout location={this.props.location}>
         <div className={`body ${this.state.loading} ${this.state.isArticleVisible ? 'is-article-visible' : ''}`}>
@@ -162,16 +162,22 @@ async function checkValidUser() {
 }
 
 function getCookie(cname) {
-  var name = cname + "=";
-  var ca = document.cookie.split(';');
-  for(var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
+  if (typeof document !== 'undefined') {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+
+    for(var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
     }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
+    return "";
   }
-  return "";
+  else {
+    return;
+  }
 }

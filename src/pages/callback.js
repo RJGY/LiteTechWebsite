@@ -9,7 +9,7 @@ import cookies from 'js-cookie';
 
 class Callback extends React.Component {
 	render() {
-		if (foo.split('=', 2)[1] != null) {
+		if (url.split('=', 2)[1] != null) {
 			getUser();
 		}
 		return(
@@ -22,10 +22,8 @@ class Callback extends React.Component {
 	}
 }
 
-const foo = () => {
-  const url = typeof window !== 'undefined' ? window.location.href : '';
-  return url;
-};
+const url = typeof window !== 'undefined' ? window.location.href : '';
+
 
 async function getUser() {
 
