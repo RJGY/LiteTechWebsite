@@ -28,21 +28,20 @@ class Main extends React.Component {
     }
 
     render() {
-        let textStyle = {
-            paddingTop:'1.3em',
-            float: 'right',
-            display: 'inline', /* inline-block */
-            width: '55%',
-            overflow: 'hidden',
-            margin: 'auto', 
-        };
-
         let imgStyle = {
             paddingTop:'1.4em',
             float: 'left',
             display: 'flex', /* flex */
             width: '40%',
             overflow: 'hidden',  
+        };
+
+        let textStyle = {
+            paddingTop:'1.3em',
+            float: 'right',
+            display: 'inline-block', /* inline-block */
+            width: '55%',
+            overflow: 'hidden',
         };
 
         let close = (
@@ -70,14 +69,12 @@ class Main extends React.Component {
                                 <span style={imgStyle}>
                                     <div>
                                         <a href={`https://www.youtube.com/watch?v=${resourceId.videoId}`} target="_blank">
-                                            <div>
-                                                <img width='100%' height='100%' src={ medium.url } alt="" />
-                                            </div>
+                                            <img width='100%' height='100%' src={ medium.url } alt="" />
                                         </a>
                                     </div>
                                 </span>
                                 <span style={textStyle}>
-                                    <div>
+                                    <div style={{height:'135px'}}>
                                         <a href={`https://www.youtube.com/watch?v=${resourceId.videoId}`} target="_blank">
                                             <p><b>{ title }</b></p>
                                             <p>{ description }...</p>
